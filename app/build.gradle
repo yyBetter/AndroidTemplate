@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.yy.www.template"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    // 提前声明 signingConfigs 避免调用时未声明
+    signingConfigs {
+        config
+    }
+
+    // 构建类型
+    buildTypes {
+        debug {
+            minifyEnabled false
+            // 在BuildConfig 中增加一个String 的变量 STATE_TEST value : debug
+            buildConfigField 'String', 'STATE_TEST', '"debug"'
+            // 在 res/string 内增加一个标签 name: test_value value : AGradle_debug
+            resValue "string", "test_value", "AGradle_debug"
+        }
+
+        release {
+            // 是否启用混淆
+            minifyEnabled true
+            // 资源压缩
+            shrinkResources true
+            // 混淆文件路径
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+    // 产品渠道
+    productFlavors {
+        dev {
+            applicationId 'com.yy.template.dev'//个性定制包名
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //// 当BuildType 与 ProductFlavors配置完成后，可以在 BuildVariants下看到不同的 assemble策略////
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    // dex 内存上限
+    dexOptions { javaMaxHeapSize "4g" }
+
+    // 控制lint时 遇到error 或者 warn 导致build 停止
+    lintOptions {
+        abortOnError false
+    }
+
+    // 如果将 .so 文件放在 app->libs下，需将路径如下重定向
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+}
+
+dependencies {
+    //即添加所有在libs文件夹中的jar
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+}
+
+// 通过Properties 获取保存在local.properties文件中的signConfig信息
+def props = new Properties()
+props.load(new FileInputStream(rootProject.file("local.properties")))
+android.signingConfigs.config.storeFile rootProject.file(props.keyStore)
+android.signingConfigs.config.storePassword props.keyStorePassword
+android.signingConfigs.config.keyAlias props.keyAlias
+android.signingConfigs.config.keyPassword props.keyAliasPassword
