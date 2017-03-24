@@ -22,6 +22,7 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+// Define versions in a single place
 ext {
     // default config version
     compileSdkVersion = 23
@@ -32,4 +33,5 @@ ext {
 
     // dependency lib version
     supportLibraryVersion = '24.2.0'
+    guavaVersion = '18.0'
 }

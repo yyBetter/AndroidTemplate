@@ -69,3 +69,7 @@
 ### 以上为通用混淆              ###
 ################################
 
+# ARouter 混淆
+ -keep public class com.alibaba.android.arouter.routes.**{*;}
+ -keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
+
