@@ -22,6 +22,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <com.brioal.bottomtab.view.BottomLayout
+            android:id="@+id/main_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom" />
+
     </android.support.design.widget.CoordinatorLayout>
 
 

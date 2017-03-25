@@ -13,7 +13,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-
         SplashFragment splashFragment = (SplashFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.contentFrame);
 
@@ -23,9 +22,5 @@ public class SplashActivity extends AppCompatActivity {
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
                     splashFragment, R.id.contentFrame);
         }
-
-        // Create the presenter
-        new SplashPresenter(splashFragment);
-
     }
 }

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -17,7 +18,7 @@ android {
         //ARouter
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
+                arguments = [moduleName: project.getName()]
             }
         }
     }
@@ -91,9 +92,24 @@ dependencies {
     compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
     compile "com.google.guava:guava:$rootProject.guavaVersion"
 
+    //butterKnife
+    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
     //ARouter
     compile 'com.alibaba:arouter-api:1.1.0'
     annotationProcessor 'com.alibaba:arouter-compiler:1.0.4'
+
+    //multiType
+    compile 'me.drakeet.multitype:multitype:2.2.1'
+
+    // bottomMenu https://github.com/Brioal/BottomTabLayout
+    compile 'com.github.Brioal:BottomTabLayout:1.4'
+
+    //log https://github.com/orhanobut/logger
+    compile 'com.orhanobut:logger:1.15'
+
+
 }
 
 // 通过Properties 获取保存在local.properties文件中的signConfig信息

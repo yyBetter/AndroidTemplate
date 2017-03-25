@@ -12,20 +12,13 @@ import android.widget.ImageView;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.yy.www.template.R;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 /**
  * Created by yangyu on 2017/3/23.
  */
 
 public class SplashFragment extends Fragment implements SplashContract.View {
 
-    SplashContract.Presenter presenter;
-
-    @Override
-    public void setPresenter(SplashContract.Presenter presenter) {
-        this.presenter = checkNotNull(presenter, "SplashContract.Presenter not be null");
-    }
+    SplashContract.Presenter mPresenter;
 
     public static SplashFragment newInstance() {
 //        Bundle arguments = new Bundle();
@@ -34,7 +27,6 @@ public class SplashFragment extends Fragment implements SplashContract.View {
 //        fragment.setArguments(arguments);
         return fragment;
     }
-
 
     @Nullable
     @Override
@@ -52,9 +44,13 @@ public class SplashFragment extends Fragment implements SplashContract.View {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        presenter.onStart();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initPresenter();
     }
 
+    private void initPresenter() {
+        mPresenter = new SplashPresenter(getActivity(), this);
+        mPresenter.onStart();
+    }
 }

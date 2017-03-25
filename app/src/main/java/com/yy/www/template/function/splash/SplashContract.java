@@ -9,12 +9,11 @@ import com.yy.www.template.base.BaseView;
 
 public class SplashContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView {
 
     }
 
     interface Presenter extends BasePresenter {
-
 
     }
 

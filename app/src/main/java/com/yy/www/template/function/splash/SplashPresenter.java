@@ -1,19 +1,17 @@
 package com.yy.www.template.function.splash;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import android.content.Context;
+
+import com.yy.www.template.base.BasePresenterImpl;
 
 /**
  * Created by yangyu on 2017/3/23.
  */
 
-public class SplashPresenter implements SplashContract.Presenter {
+public class SplashPresenter extends BasePresenterImpl<SplashContract.View> implements SplashContract.Presenter {
 
-    SplashContract.View view;
-
-
-    public SplashPresenter(SplashContract.View view) {
-        this.view = checkNotNull(view,"SplashContract.View not be null");
-        view.setPresenter(this);
+    public SplashPresenter(Context mContext, SplashContract.View mView) {
+        super(mContext, mView);
     }
 
     @Override
