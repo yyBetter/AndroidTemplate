@@ -8,9 +8,9 @@ import android.content.Context;
 
 public class BasePresenterImpl<V extends BaseView> implements BasePresenter {
 
-    Context mContext;
+    public Context mContext;
 
-    V mView;
+    public V mView;
 
     public BasePresenterImpl(Context mContext, V mView) {
         this.mContext = mContext;

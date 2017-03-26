@@ -1,8 +1,9 @@
 package com.yy.www.template.function.main;
 
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.widget.FrameLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.brioal.bottomtab.entity.TabEntity;
@@ -11,6 +12,7 @@ import com.brioal.bottomtab.view.BottomLayout;
 import com.orhanobut.logger.Logger;
 import com.yy.www.template.R;
 import com.yy.www.template.base.BaseActivity;
+import com.yy.www.template.function.main.home.adapter.MainViewPagerAdapter;
 
 import java.util.List;
 
@@ -25,14 +27,15 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.contentFrame)
-    FrameLayout contentFrame;
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
     @BindView(R.id.main_tab)
     BottomLayout mainTab;
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
 
     MainContract.Presenter mPresenter;
+
 
     @Override
     protected int getLayout() {
@@ -40,14 +43,36 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     }
 
     @Override
-    protected void initView() {
-
-    }
-
-    @Override
     protected void initPresenter() {
         mPresenter = new MainPresenter(this, this);
         mPresenter.onStart();
+    }
+
+    @Override
+    protected void initView() {
+        initViewPager();
+    }
+
+    private void initViewPager() {
+        FragmentManager manager = getSupportFragmentManager();
+        viewPager.setAdapter(new MainViewPagerAdapter(manager, mPresenter.getFragment()));
+        viewPager.setCurrentItem(0);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
@@ -75,4 +100,6 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         mPresenter.onDestroy();
         super.onDestroy();
     }
+
+
 }

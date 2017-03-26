@@ -1,10 +1,12 @@
 package com.yy.www.template.function.main;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 
 import com.brioal.bottomtab.entity.TabEntity;
 import com.yy.www.template.R;
 import com.yy.www.template.base.BasePresenterImpl;
+import com.yy.www.template.function.main.home.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +17,6 @@ import java.util.List;
  */
 
 public class MainPresenter extends BasePresenterImpl<MainContract.View> implements MainContract.Presenter {
-
-    private Context mContext;
-
-    private MainContract.View mView;
 
     public MainPresenter(Context context, MainContract.View view) {
         super(context, view);
@@ -45,4 +43,14 @@ public class MainPresenter extends BasePresenterImpl<MainContract.View> implemen
     }
 
 
+    @Override
+    public ArrayList<Fragment> getFragment() {
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments.add(HomeFragment.newInstance());
+        fragments.add(HomeFragment.newInstance());
+        fragments.add(HomeFragment.newInstance());
+        fragments.add(HomeFragment.newInstance());
+        fragments.add(HomeFragment.newInstance());
+        return fragments;
+    }
 }

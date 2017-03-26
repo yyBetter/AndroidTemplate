@@ -1,9 +1,12 @@
 package com.yy.www.template.function.main;
 
+import android.support.v4.app.Fragment;
+
 import com.brioal.bottomtab.entity.TabEntity;
 import com.yy.www.template.base.BasePresenter;
 import com.yy.www.template.base.BaseView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,5 +22,6 @@ public class MainContract {
 
     interface Presenter extends BasePresenter{
 
+        ArrayList<Fragment> getFragment();
     }
 }
