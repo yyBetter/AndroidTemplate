@@ -41,4 +41,8 @@ ext {
 
     //butterKnife
     butterknifeVersion = '8.5.1'
+    //retrofit
+    retrofitVersion = '2.0.0-beta4'
+    //okHttp
+    okHttpVersion = '3.0.1'
 }

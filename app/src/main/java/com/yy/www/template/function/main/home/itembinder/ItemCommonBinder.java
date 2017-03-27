@@ -45,13 +45,15 @@ public class ItemCommonBinder extends ItemViewBinder<CommonItem, ItemCommonBinde
         @BindView(R.id.tv)
         TextView tv;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Logger.e("v : " + getAdapterPosition());
+                    if (getAdapterPosition() == 0) {
+                        Logger.e("v : " + getAdapterPosition());
+                    }
                 }
             });
 

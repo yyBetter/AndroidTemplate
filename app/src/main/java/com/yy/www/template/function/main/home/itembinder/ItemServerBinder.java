@@ -59,7 +59,7 @@ public class ItemServerBinder extends ItemViewBinder<ItemServer, ItemServerBinde
             adapter.register(CommonItem.class, new ItemCommonBinder());
             innerRecyclerView.setLayoutManager(new GridLayoutManager(context, 4));
             innerRecyclerView.setAdapter(adapter);
-            List items = new ArrayList<>();
+            List<Object> items = new ArrayList<>();
             items.add(new CommonItem("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490540148008&di=1c58cc4e499364f84454dc12f0e16545&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fbaike%2Fpic%2Fitem%2F472309f7905298222740e887d2ca7bcb0a46d407.jpg", "title1"));
             items.add(new CommonItem("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490540148008&di=1c58cc4e499364f84454dc12f0e16545&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fbaike%2Fpic%2Fitem%2F472309f7905298222740e887d2ca7bcb0a46d407.jpg", "title2"));
             items.add(new CommonItem("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490540148008&di=1c58cc4e499364f84454dc12f0e16545&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fbaike%2Fpic%2Fitem%2F472309f7905298222740e887d2ca7bcb0a46d407.jpg", "title3"));
